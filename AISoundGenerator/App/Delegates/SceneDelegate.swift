@@ -2,21 +2,38 @@
 //  SceneDelegate.swift
 //  AISoundGenerator
 //
-//  Created by Yahya Can Özdemir on 3.11.2024.
+//  Created by Yahya Can Özdemir on 2.11.2024.
 //
 
 import UIKit
 
-class SceneDelegate: UIResponder, UIWindowSceneDelegate {
+class SceneDelegate: UIResponder, UIWindowSceneDelegate, UIApplicationDelegate {
 
   var window: UIWindow?
-
+  var homeCoordinator: HomeCoordinator?
 
   func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-    // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
-    // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
-    // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
-    guard let _ = (scene as? UIWindowScene) else { return }
+    guard let windowScene = (scene as? UIWindowScene) else { return }
+    
+    UIApplication.shared.delegate = self
+    
+    window = UIWindow(windowScene: windowScene)
+    window?.rootViewController = BaseNavigationController()
+
+    homeCoordinator = HomeCoordinator(
+      navigationController: window?.rootViewController as! BaseNavigationController)
+    homeCoordinator?.start()
+
+    window?.makeKeyAndVisible()
+
+    
+    //For dismissKeyboard on tap screen without any keyboard package
+//    window?.addGestureRecognizer(
+//      UITapGestureRecognizer(
+//        target: window,
+//        action: #selector(UIWindow.endEditing(_:))
+//      )
+//    )
   }
 
   func sceneDidDisconnect(_ scene: UIScene) {
