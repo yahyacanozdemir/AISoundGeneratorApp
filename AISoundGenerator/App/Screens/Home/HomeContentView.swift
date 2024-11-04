@@ -27,7 +27,7 @@ class HomeContentView: BaseView {
   }
   
   private lazy var userPromptTextView: PromptInputView = {
-    let input = PromptInputView()
+    let input = PromptInputView(onlyShowPrompt: false)
     input.userPromptDidChanged = { self.isContinuable() }
     return input
   }()
@@ -94,9 +94,7 @@ class HomeContentView: BaseView {
     return button
   }()
     
-  override func setupSubviews() {
-    backgroundColor = .papcornsBlack
-    
+  override func setupSubviews() {    
     [userPromptTextView, voiceSelectionLabel, contentLoadingView, categoriesCollectionView, voicesCollectionView, continueButton].forEach{ addSubview($0)}
   }
   
@@ -196,7 +194,7 @@ extension HomeContentView: UICollectionViewDataSource, UICollectionViewDelegate,
       return CGSize(width: 100, height: 140)
     }
     
-    let width = category.calculateLabelWidth(with: UIFont.Typography.body, maxHeight: 22) + 64
+    let width = category.calculateLabelWidth(with: UIFont.Typography.body6, maxHeight: 22) + 64
     return CGSize(width: width, height: 40)
   }
 }

@@ -24,7 +24,7 @@ class VoiceCell: BaseCollectionViewCell {
   private lazy var voiceImageView: UIImageView = {
     let imageView = UIImageView()
     imageView.contentMode = .scaleAspectFit
-    imageView.layer.cornerRadius = 10
+    imageView.addRadius(10)
     imageView.clipsToBounds = true
     return imageView
   }()
@@ -47,7 +47,7 @@ class VoiceCell: BaseCollectionViewCell {
   private lazy var label: UILabel = {
     let label = UILabel()
     label.textColor = .white
-    label.font = UIFont.Typography.body
+    label.font = UIFont.Typography.body6
     label.textAlignment = .center
     return label
   }()

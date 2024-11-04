@@ -9,7 +9,19 @@ import UIKit
 
 class PromptInputView: BaseView {
   
+  init(onlyShowPrompt: Bool, initialPrompt: String? = nil) {
+    self.onlyShowPrompt = onlyShowPrompt
+    self.initialPrompt = initialPrompt
+    super.init()
+  }
+  
+  required init?(coder _: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
+  
   private var maxCharacterCount = 140
+  private var onlyShowPrompt: Bool
+  private var initialPrompt: String?
   
   var userPromptDidChanged: (() -> Void)?
   
@@ -22,12 +34,14 @@ class PromptInputView: BaseView {
     textView.textColor = .papcornsWhite
     textView.backgroundColor = .papcornsDark
     textView.textColor = .papcornsWhite
-    textView.font = UIFont.Typography.body
+    textView.font = UIFont.Typography.body6
     textView.textContainer.maximumNumberOfLines = 4
     textView.textContainerInset = .init(top: 16, left: 16, bottom: 32, right: 16)
     textView.delegate = self
     textView.isScrollEnabled = false
     textView.showsVerticalScrollIndicator = false
+    textView.isEditable = !onlyShowPrompt
+    textView.text = initialPrompt
     textView.addRadius(10)
     
     textView.addSubview(textViewPlaceHolderLabel)
@@ -40,21 +54,23 @@ class PromptInputView: BaseView {
   private lazy var textViewPlaceHolderLabel: UILabel = {
     let label = UILabel()
     label.text = "Write a text and let AI turn it into a speech with the voice of your favorite character"
-    label.font = UIFont.Typography.body
+    label.font = UIFont.Typography.body6
     label.textColor = .papcornsWhite50
     label.sizeToFit()
     label.numberOfLines = 0
     label.textAlignment = .left
+    label.isHidden = onlyShowPrompt
     return label
   }()
   
   private lazy var inspirationButton: BaseButton = {
     let button = BaseButton()
     button.title = "Get inspiration"
-    button.titleLabel?.font = UIFont.Typography.bodyBld
+    button.titleLabel?.font = UIFont.Typography.bodySmb4
     button.backgroundColor = .clear
     button.titleColor = .papcornsPink
     button.isUnderlined = true
+    button.isHidden = onlyShowPrompt
     button.onTap = { [weak self] in
       self?.textView.text = InspirationsData.getRandomInspiration()
       self?.textViewPlaceHolderLabel.isHidden = true
@@ -68,6 +84,7 @@ class PromptInputView: BaseView {
     let view = UIImageView()
     view.image = UIImage(named: "inspirationIcon")
     view.contentMode = .scaleAspectFit
+    view.isHidden = onlyShowPrompt
     return view
   }()
   

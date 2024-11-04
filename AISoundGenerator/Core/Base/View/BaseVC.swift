@@ -27,7 +27,7 @@ class BaseVC<T>: UIViewController, Layoutable {
   override func viewDidLoad() {
     super.viewDidLoad()
     (contentView as? BaseView)?.viewDidLoad()
-    view.backgroundColor = UIColor.white
+    view.backgroundColor = .papcornsBlack
     setupUI()
     bind()
   }
@@ -98,7 +98,7 @@ class BaseVC<T>: UIViewController, Layoutable {
 
     if let selectedNavBar {
       selectedNavBar.snp.makeConstraints { make in
-        make.top.equalTo(statusBarView.snp.bottom)
+        make.top.equalTo(statusBarView.snp.bottom).offset(16)
         make.leading.trailing.equalToSuperview()
         make.height.equalTo(navigationBarHeight)
       }

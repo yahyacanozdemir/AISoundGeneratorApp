@@ -62,7 +62,7 @@ class CategoryCell: BaseCollectionViewCell {
   private lazy var label: UILabel = {
     let label = UILabel()
     label.textColor = .white
-    label.font = UIFont.Typography.body
+    label.font = UIFont.Typography.body4
     return label
   }()
 }

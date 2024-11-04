@@ -17,8 +17,8 @@ class VoiceGeneratingCoordinator: BaseCoordinator {
 }
 
 extension VoiceGeneratingCoordinator {
-  func navigateToVoiceDetailPage() {
+  func navigateToVoiceDetailPage(voiceUrl: String) {
     let voiceDetailCoordinator = VoiceDetailCoordinator(navigationController: navigationController)
-    voiceDetailCoordinator.start()
+    voiceDetailCoordinator.start(voiceUrl: voiceUrl)
   }
 }

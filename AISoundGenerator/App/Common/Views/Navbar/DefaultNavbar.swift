@@ -1,5 +1,5 @@
 //
-//  DefaultNavBarView.swift
+//  DefaultNavbar.swift
 //  MyBaseApp
 //
 //  Created by Yahya Can Özdemir on 2.11.2024.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class DefaultNavBarView: BaseView {
+class DefaultNavbar: BaseView {
 
   init(title: String = "", type: NavBarType = .backButton) {
     navBarTitle = title
@@ -19,9 +19,7 @@ class DefaultNavBarView: BaseView {
     fatalError("init(coder:) has not been implemented")
   }
 
-  // MARK: Internal
-
-  var onTapBackButton: (() -> Void)?
+  var onTapBack: (() -> Void)?
 
   private lazy var titleLabel: UILabel = {
     let label = UILabel()
@@ -56,23 +54,17 @@ class DefaultNavBarView: BaseView {
     }
   }
 
-  // MARK: Private
-
   private var type: NavBarType
   private var navBarTitle: String
   
   private lazy var backButton: BaseButton = {
     let button = BaseButton()
     button.setImage(UIImage(named: "xIcon"), for: .normal)
-    button.onTap = {
-      self.backTapped()
+    button.onTap = { [weak self] in
+      self?.onTapBack?()
     }
     return button
   }()
-  
-  private func backTapped() {
-    self.onTapBackButton?()
-  }
 }
 
 // MARK: - NavBarType

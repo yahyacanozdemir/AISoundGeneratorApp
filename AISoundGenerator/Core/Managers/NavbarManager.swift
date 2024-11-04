@@ -11,8 +11,9 @@ enum NavbarManager {
 
   static func placeNavbar(baseVC: UIViewController) -> BaseView? {
     switch baseVC {
-    case baseVC as? HomeVC: return DefaultNavBarView(title: "AI Voice", type: .onlyTitle)
-    case baseVC as? VoiceGeneratingVC: return DefaultNavBarView()
+    case baseVC as? HomeVC: return DefaultNavbar(title: "AI Voice", type: .onlyTitle)
+    case baseVC as? VoiceGeneratingVC: return DefaultNavbar()
+    case baseVC as? VoiceDetailVC: return VoiceDetailNavbar()
     default: return nil
     }
   }

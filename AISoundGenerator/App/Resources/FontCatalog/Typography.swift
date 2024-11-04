@@ -11,13 +11,30 @@ import UIKit
 
 extension UIFont {
   enum Typography {
-    static let titleLarge = UIFont.sfPro(style: .bold, size: 34, lineHeight: 41)
+    static let titleLarge2 = UIFont.sfPro(style: .bold, size: 34, lineHeight: 42)
+    static let titleLarge = UIFont.sfPro(style: .semibold, size: 34, lineHeight: 42)
     static let titleMedium = UIFont.sfPro(style: .bold, size: 22, lineHeight: 28)
     
     static let bodyBld = UIFont.sfPro(style: .bold, size: 17, lineHeight: 22)
-    static let bodySmb = UIFont.sfPro(style: .semibold, size: 17, lineHeight: 22)
-    static let body = UIFont.sfPro(style: .regular, size: 17, lineHeight: 22)
     
+    static let title1 = UIFont.sfPro(style: .semibold, size: 26, lineHeight: 32)
+
+    static let bodySmb6 = UIFont.sfPro(style: .semibold, size: 17, lineHeight: 22)
+    static let bodySmb5 = UIFont.sfPro(style: .semibold, size: 16, lineHeight: 22)
+    static let bodySmb4 = UIFont.sfPro(style: .semibold, size: 15, lineHeight: 22)
+    static let bodySmb3 = UIFont.sfPro(style: .semibold, size: 14, lineHeight: 22)
+    static let bodySmb2 = UIFont.sfPro(style: .semibold, size: 13, lineHeight: 22)
+    static let bodySmb1 = UIFont.sfPro(style: .semibold, size: 12, lineHeight: 22)
+
+    
+    static let body6 = UIFont.sfPro(style: .regular, size: 17, lineHeight: 22)
+    static let body5 = UIFont.sfPro(style: .regular, size: 16, lineHeight: 22)
+    static let body4 = UIFont.sfPro(style: .regular, size: 15, lineHeight: 22)
+    static let body3 = UIFont.sfPro(style: .regular, size: 14, lineHeight: 22)
+    static let body2 = UIFont.sfPro(style: .regular, size: 13, lineHeight: 22)
+    static let body1 = UIFont.sfPro(style: .regular, size: 12, lineHeight: 22)
+
+
     static let caption = UIFont.sfPro(style: .semibold, size: 11, lineHeight: 13)
   }
 }

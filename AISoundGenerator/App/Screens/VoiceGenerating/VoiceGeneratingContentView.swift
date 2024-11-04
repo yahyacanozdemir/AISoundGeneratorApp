@@ -53,7 +53,7 @@ class VoiceGeneratingContentView: BaseView {
   private lazy var generatingDescriptionLabel: UILabel = {
     let label = UILabel()
     label.text = "It may take up to few minutes for you to receive an AI-generated speech. You can find your voice record in Library."
-    label.font = UIFont.Typography.body
+    label.font = UIFont.Typography.body6
     label.textAlignment = .center
     label.numberOfLines = 0
     label.textColor = .papcornsWhite
@@ -61,7 +61,6 @@ class VoiceGeneratingContentView: BaseView {
   }()
   
   override func setupSubviews() {
-    backgroundColor = .papcornsBlack
     [animationBackgroundView, generatingImageView, generatingTitleLabel, generatingDescriptionLabel].forEach { addSubview($0) }
     
     animationEffect()
@@ -125,8 +124,8 @@ extension VoiceGeneratingContentView: NetworkDelegate {
   //TODO:
   func networkDataReceived(_ data: Any?) {
     guard let response = data as? VoiceResulEntity, let resultUrl = response.resultUrl else { return }
-    DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
+//    DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
       self.delegate?.voiceGenerated(resultUrl: resultUrl)
-    })
+//    })
   }
 }
