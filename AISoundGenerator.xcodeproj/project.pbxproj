@@ -447,8 +447,8 @@
 		D36DE26B2CDACABF00E63E5C /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				D34B7BFB2CD79A1E009A6763 /* Main.storyboard */,
 				D34B7C002CD79A1F009A6763 /* LaunchScreen.storyboard */,
+				D34B7BFB2CD79A1E009A6763 /* Main.storyboard */,
 			);
 			path = Main;
 			sourceTree = "<group>";
