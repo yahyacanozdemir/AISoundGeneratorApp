@@ -54,4 +54,25 @@ class NetworkManager {
       }
     }
   }
+  
+  func downloadAudio(from url: URL, completion: @escaping (Result<URL, NetworkError>) -> Void) {
+    AF.download(url)
+      .validate()
+      .responseData { response in
+        switch response.result {
+        case .success(let data):
+          let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+          let saveURL = documentsDirectory.appendingPathComponent("My Generated AI Voice From PapCorns 101 APP")
+          
+          do {
+            try data.write(to: saveURL)
+            completion(.success(saveURL))
+          } catch {
+            completion(.failure(.requestFailed(error)))
+          }
+        case .failure(let error):
+          completion(.failure(.requestFailed(error)))
+        }
+      }
+  }
 }

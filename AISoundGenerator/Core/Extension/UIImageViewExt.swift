@@ -12,7 +12,7 @@ import UIKit
 
 extension UIImageView {
   
-  func setImage(_ urlString: String?, placeholder: UIImage? = UIImage(named: "papcornsIcon")) {
+  func setImage(_ urlString: String?, placeholder: UIImage? = UIImage.Catalog.papcornsIcon) {
     guard let urlString, let url = URL(string: urlString) else { return }
     
     kf.setImage(

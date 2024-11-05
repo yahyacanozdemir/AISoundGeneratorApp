@@ -23,7 +23,7 @@ class DefaultNavbar: BaseView {
 
   private lazy var titleLabel: UILabel = {
     let label = UILabel()
-    label.font = UIFont.Typography.bodyBld
+    label.font = UIFont.Typography.subheading3
     label.textColor = .white
     return label
   }()
@@ -59,7 +59,7 @@ class DefaultNavbar: BaseView {
   
   private lazy var backButton: BaseButton = {
     let button = BaseButton()
-    button.setImage(UIImage(named: "xIcon"), for: .normal)
+    button.setImage(UIImage.Catalog.xIcon, for: .normal)
     button.onTap = { [weak self] in
       self?.onTapBack?()
     }

@@ -8,13 +8,15 @@
 import UIKit
 
 protocol VoiceDetailDelegate: AnyObject {
-  func showErrorPopup(title: String?, message: String?)
+  func showPopup(title: String, message: String)
+  func showShareSheet(_ fileUrl: URL)
 }
 
 class VoiceDetailContentView: BaseView {
   
-  init(voiceUrl: String) {
+  init(voiceUrl: String, voicePrompt: String) {
     self.voiceUrl = voiceUrl
+    self.voicePromptText = voicePrompt
     super.init()
   }
   
@@ -22,42 +24,49 @@ class VoiceDetailContentView: BaseView {
     fatalError("init(coder:) has not been implemented")
   }
   
+  public func deinitVoicePlayer() {
+    voicePlayer.deinitView()
+  }
+  
   weak var delegate: VoiceDetailDelegate?
 
+  var voiceUrl: String
+  var voicePromptText: String
   
-  private var voiceUrl: String
-  
-  private lazy var voicePlayer = VoicePlayerView(voiceUrl: voiceUrl, voiceImageUrl: "voiceCover")
+  private lazy var voicePlayer: VoicePlayerView = {
+    let view = VoicePlayerView(voiceUrl: voiceUrl, voiceImageUrl: "voiceCover")
+    view.anErrorOccured = { [weak self] msg in
+      self?.delegate?.showPopup(title: "Hata", message: msg.rawValue)
+    }
+    return view
+  }()
   
   private lazy var promptLabel : UILabel = {
     let label = UILabel()
     label.text = "Text"
-    label.font = UIFont.Typography.title1
-    label.textColor = .white
+    label.font = UIFont.Typography.subheading2
+    label.textColor = .papcornsWhite
     return label
   }()
   
-  private lazy var userPromptTextView = PromptInputView(onlyShowPrompt: true, initialPrompt: "Lo-Fi music, deep, smooth synthwave with a dream like  atmosphere")
+  private lazy var userPromptTextView = PromptInputView(onlyShowPrompt: true, initialPrompt: voicePromptText)
   
   private lazy var downloadButton: BaseButton = {
     let button = BaseButton()
     button.title = "Download"
     button.titleColor = .papcornsWhite
-    button.titleLabel?.font = UIFont.Typography.bodyBld
+    button.titleLabel?.font = UIFont.Typography.heading3
     button.addRadius(10)
     button.isGradientButton = true
     
     button.onTap = { [weak self] in
-
+      self?.downloadAndShareVoice()
     }
     return button
   }()
   
   override func setupSubviews()  {
-    addSubview(voicePlayer)
-    addSubview(promptLabel)
-    addSubview(userPromptTextView)
-    addSubview(downloadButton)
+    [voicePlayer, promptLabel, userPromptTextView, downloadButton].forEach { addSubview($0) }
   }
   
   override func setupConstraints() {
@@ -68,6 +77,7 @@ class VoiceDetailContentView: BaseView {
     }
     promptLabel.snp.makeConstraints { make in
       make.top.equalTo(voicePlayer.snp.bottom).offset(34)
+      make.height.equalTo(32)
       make.horizontalEdges.equalToSuperview().inset(16)
     }
     userPromptTextView.snp.makeConstraints { make in
@@ -80,6 +90,26 @@ class VoiceDetailContentView: BaseView {
       make.bottom.equalTo(safeAreaLayoutGuide).offset(-24)
       make.horizontalEdges.equalToSuperview().inset(16)
       make.height.equalTo(64)
+    }
+  }
+}
+
+//MARK: Networking
+
+extension VoiceDetailContentView {
+  func downloadAndShareVoice() {
+    guard let url = URL(string: voiceUrl) else { return }
+    FullScreenIndicator.shared.showLoadingView(true, message: "Ses dosyası indiriliyor..")
+
+    NetworkManager.shared.downloadAudio(from: url) { [weak self] result in
+      switch result {
+      case .success(let fileUrl):
+        FullScreenIndicator.shared.showLoadingView(false)
+        self?.delegate?.showShareSheet(fileUrl)
+      case .failure(_):
+        FullScreenIndicator.shared.showLoadingView(false)
+        self?.delegate?.showPopup(title: "Hata", message: "Ses dosyası indirilirken hata meydana geldi.")
+      }
     }
   }
 }

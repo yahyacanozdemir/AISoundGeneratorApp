@@ -14,15 +14,17 @@ class VoiceGeneratingVC: BaseVC<VoiceGeneratingContentView>{
     contentView?.delegate = self
     
     if let navBar = selectedNavBar as? DefaultNavbar {
-      navBar.onTapBack = {
-        self.coordinator?.pop()
+      navBar.onTapBack = { [weak self] in
+        self?.coordinator?.pop()
       }
     }
   }
 }
 
+//MARK: Navigation
+
 extension VoiceGeneratingVC: VoiceGeneratingContentViewDelegate {
-  func voiceGenerated(resultUrl: String) {
-    coordinator?.navigateToVoiceDetailPage(voiceUrl: resultUrl)
+  func voiceGenerated(resultUrl: String, voicePrompt: String) {
+    coordinator?.navigateToVoiceDetailPage(voiceUrl: resultUrl, voicePrompt: voicePrompt)
   }
 }

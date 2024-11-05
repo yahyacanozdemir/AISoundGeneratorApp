@@ -34,7 +34,7 @@ class PromptInputView: BaseView {
     textView.textColor = .papcornsWhite
     textView.backgroundColor = .papcornsDark
     textView.textColor = .papcornsWhite
-    textView.font = UIFont.Typography.body6
+    textView.font = UIFont.Typography.bodyLg
     textView.textContainer.maximumNumberOfLines = 4
     textView.textContainerInset = .init(top: 16, left: 16, bottom: 32, right: 16)
     textView.delegate = self
@@ -54,7 +54,7 @@ class PromptInputView: BaseView {
   private lazy var textViewPlaceHolderLabel: UILabel = {
     let label = UILabel()
     label.text = "Write a text and let AI turn it into a speech with the voice of your favorite character"
-    label.font = UIFont.Typography.body6
+    label.font = UIFont.Typography.bodyLg
     label.textColor = .papcornsWhite50
     label.sizeToFit()
     label.numberOfLines = 0
@@ -66,7 +66,7 @@ class PromptInputView: BaseView {
   private lazy var inspirationButton: BaseButton = {
     let button = BaseButton()
     button.title = "Get inspiration"
-    button.titleLabel?.font = UIFont.Typography.bodySmb4
+    button.titleLabel?.font = UIFont.Typography.subheading4
     button.backgroundColor = .clear
     button.titleColor = .papcornsPink
     button.isUnderlined = true
@@ -82,7 +82,7 @@ class PromptInputView: BaseView {
   
   private lazy var inspirationImageView: UIImageView = {
     let view = UIImageView()
-    view.image = UIImage(named: "inspirationIcon")
+    view.image = UIImage.Catalog.inspirationIcon
     view.contentMode = .scaleAspectFit
     view.isHidden = onlyShowPrompt
     return view
@@ -90,7 +90,7 @@ class PromptInputView: BaseView {
   
   private lazy var clearPromptButton: BaseButton = {
     let button = BaseButton()
-    let btnImage = UIImage(named: "xIcon")
+    let btnImage = UIImage.Catalog.xIcon
     button.setImage(btnImage, for: .normal)
     button.backgroundColor = .clear
     button.isHidden = true

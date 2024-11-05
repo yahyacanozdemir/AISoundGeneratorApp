@@ -10,26 +10,17 @@ import UIKit
 class CategoryCell: BaseCollectionViewCell {
 
   override var isSelected: Bool {
-    didSet {
-      if isSelected {
-        addBorder(color: .papcornsPink, width: 1)
-      } else {
-        removeBorder()
-      }
-    }
+    didSet { isSelected ? addBorder(color: .papcornsPink, width: 1) : removeBorder() }
   }
   
   var name: String? {
-    didSet {
-      updateUI()
-    }
+    didSet { updateUI() }
   }
 
   override func setupSubviews() {
     addRadius(10)
 
     backgroundColor = .papcornsDark
-    contentView.isUserInteractionEnabled = true
     contentView.addSubview(label)
   }
 
@@ -57,12 +48,10 @@ class CategoryCell: BaseCollectionViewCell {
     return updatedAttributes
   }
 
-  // MARK: Private
-
   private lazy var label: UILabel = {
     let label = UILabel()
     label.textColor = .white
-    label.font = UIFont.Typography.body4
+    label.font = UIFont.Typography.bodyMd
     return label
   }()
 }

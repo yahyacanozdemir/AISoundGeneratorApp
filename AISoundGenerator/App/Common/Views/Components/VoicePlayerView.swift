@@ -1,4 +1,3 @@
-//
 //  VoicePlayerView.swift
 //  AISoundGenerator
 //
@@ -21,20 +20,31 @@ class VoicePlayerView: BaseView {
     fatalError("init(coder:) has not been implemented")
   }
   
-  weak var delegate: VoiceDetailDelegate?
+  public func deinitView() {
+    NotificationCenter.default.removeObserver(self, name: .AVPlayerItemDidPlayToEndTime, object: playerItem)
+    
+    player?.pause()
+    player = nil
+    playerItem = nil
+  }
   
-  var player: AVPlayer?
-  var playerObserver: Any?
-  
+  deinit {
+    deinitView()
+  }
+    
   private var voiceUrl: String
   private var voiceImageUrl: String
   
-  private var playerItem: AVPlayerItem?
   private var isPlaying = false
   private var isLooping = false
   private var wasPlayingBeforeSeeking = false {
     didSet { tooglePlayButtonUI(wasPlayingBeforeSeeking)}
   }
+
+  private var playerItem: AVPlayerItem?
+  private var player: AVPlayer?
+  
+  var anErrorOccured: ((VoicePlayerError) -> Void)?
   
   private lazy var voiceImageView: UIImageView = {
     let imgView = UIImageView()
@@ -48,7 +58,7 @@ class VoicePlayerView: BaseView {
   
   private lazy var loopButton: BaseButton = {
     let btn = BaseButton()
-    btn.setImage(UIImage(named: "loopDisable"), for: .normal)
+    btn.setImage(UIImage.Catalog.loopDisable, for: .normal)
     btn.onTap = { [ weak self ] in
       self?.loopButtonTap()
     }
@@ -60,7 +70,7 @@ class VoicePlayerView: BaseView {
     slider.translatesAutoresizingMaskIntoConstraints = false
     slider.backgroundColor = .papcornsDark
     slider.tintColor = .papcornsWhite
-    slider.setThumbImage(UIImage(named: "ellipseIcon"), for: .normal)
+    slider.setThumbImage(UIImage.Catalog.ellipseIcon, for: .normal)
     
     let tapGesture = UITapGestureRecognizer(target: self, action: #selector(sliderTapped(_:)))
     slider.addGestureRecognizer(tapGesture)
@@ -73,7 +83,7 @@ class VoicePlayerView: BaseView {
   
   private lazy var playButton: BaseButton = {
     let btn = BaseButton()
-    btn.setImage(UIImage(named: "playIcon"), for: .normal)
+    btn.setImage(UIImage.Catalog.playIcon, for: .normal)
     btn.onTap = { [ weak self ] in
       self?.playButtonTap()
     }
@@ -84,7 +94,7 @@ class VoicePlayerView: BaseView {
     let label = UILabel()
     label.text = "0:00"
     label.textColor = .papcornsWhite
-    label.font = UIFont.Typography.body2
+    label.font = UIFont.Typography.bodySm
     return label
   }()
   
@@ -92,7 +102,7 @@ class VoicePlayerView: BaseView {
     let label = UILabel()
     label.text = "0:00"
     label.textColor = .papcornsWhite
-    label.font = UIFont.Typography.body2
+    label.font = UIFont.Typography.bodySm
     return label
   }()
   
@@ -100,6 +110,7 @@ class VoicePlayerView: BaseView {
   override func setupSubviews()  {
     voiceImageView.addSubview(loopButton)
     [voiceImageView, playButton, sliderProgressView, currentTimeLabel, durationLabel].forEach { addSubview($0) }
+    
     setupAudioPlayer()
   }
   
@@ -155,13 +166,30 @@ class VoicePlayerView: BaseView {
     
     NotificationCenter.default.addObserver(self, selector: #selector(playerDidFinishPlaying), name: .AVPlayerItemDidPlayToEndTime, object: playerItem)
     
-    //TODO:
     playerItem?.asset.loadValuesAsynchronously(forKeys: ["duration"]) { [weak self] in
+      guard let self = self else { return }
+      
+      let status = playerItem?.asset.status(of: .duration)
+      
       DispatchQueue.main.async {
-        if let duration = self?.playerItem?.duration {
-          let seconds = CMTimeGetSeconds(duration)
-          self?.sliderProgressView.maximumValue = Float(seconds)
-          self?.durationLabel.text = self?.formatTime(seconds: seconds)
+        switch status {
+        case .loaded:
+          if let duration = self.playerItem?.duration {
+            let seconds = CMTimeGetSeconds(duration)
+            if !seconds.isNaN {
+              self.sliderProgressView.maximumValue = Float(seconds)
+              self.durationLabel.text = self.formatTime(seconds: seconds)
+              FullScreenIndicator.shared.showLoadingView(false)
+            } else {
+              self.anErrorOccured?(.invalidDurationTime)
+            }
+          } else {
+            self.anErrorOccured?(.durationCantLoad)
+          }
+        case .failed:
+          self.anErrorOccured?(.durationKeyInvalid)
+        default:
+          self.anErrorOccured?(.anErrorOccured)
         }
       }
     }
@@ -170,10 +198,9 @@ class VoicePlayerView: BaseView {
       guard let self = self else { return }
       let currentTime = CMTimeGetSeconds(time)
       sliderProgressView.value = Float(currentTime)
-      currentTimeLabel.text = self.formatTime(seconds: currentTime)
+      currentTimeLabel.text = formatTime(seconds: currentTime)
       
-      // Eğer player son noktaya ulaştıysa ve looping aktifse başa dön
-      if currentTime >= Double(self.sliderProgressView.maximumValue) {
+      if currentTime >= Double(sliderProgressView.maximumValue) {
         if isLooping {
           player?.seek(to: .zero)
           player?.play()
@@ -187,7 +214,11 @@ class VoicePlayerView: BaseView {
       }
     }
   }
-  
+}
+
+//MARK: Button Actions
+
+extension VoicePlayerView {
   private func playButtonTap() {
     isPlaying ? player?.pause() : player?.play()
     tooglePlayButtonUI(isPlaying)
@@ -195,11 +226,21 @@ class VoicePlayerView: BaseView {
   }
   
   private func loopButtonTap() {
-    let btnImage = isLooping ? UIImage(named: "loopDisable") : UIImage(named: "loopEnable")
+    let btnImage = isLooping ? UIImage.Catalog.loopDisable : UIImage.Catalog.loopEnable
     loopButton.setImage(btnImage, for: .normal)
     isLooping.toggle()
  }
   
+  
+  private func tooglePlayButtonUI(_ playing: Bool){
+    let btnImage = playing ? UIImage.Catalog.playIcon : UIImage.Catalog.pauseIcon
+    playButton.setImage(btnImage, for: .normal)
+  }
+}
+
+//MARK: Slider, Player Actions
+
+extension VoicePlayerView {
   @objc private func playerDidFinishPlaying() {
     if isLooping {
       player?.seek(to: .zero)
@@ -212,6 +253,15 @@ class VoicePlayerView: BaseView {
       sliderProgressView.value = 0
       currentTimeLabel.text = "00:00"
     }
+  }
+  
+  @objc private func sliderTapped(_ gesture: UITapGestureRecognizer) {
+    let location = gesture.location(in: sliderProgressView)
+    let sliderWidth = sliderProgressView.bounds.width
+    let newValue = Float(location.x / sliderWidth) * sliderProgressView.maximumValue
+    
+    sliderProgressView.setValue(newValue, animated: true)
+    sliderValueChanged(sliderProgressView)
   }
   
   @objc private func sliderValueChanged(_ sender: UISlider) {
@@ -236,24 +286,14 @@ class VoicePlayerView: BaseView {
       isPlaying = true
     }
   }
-  
-  @objc private func sliderTapped(_ gesture: UITapGestureRecognizer) {
-    let location = gesture.location(in: sliderProgressView)
-    let sliderWidth = sliderProgressView.bounds.width
-    let newValue = Float(location.x / sliderWidth) * sliderProgressView.maximumValue
-    
-    sliderProgressView.setValue(newValue, animated: true)
-    sliderValueChanged(sliderProgressView)
-  }
-  
+}
+
+//MARK: Helper Functions
+
+extension VoicePlayerView {
   private func formatTime(seconds: Double) -> String {
     let mins = Int(seconds) / 60
     let secs = Int(seconds) % 60
     return String(format: "%02d:%02d", mins, secs)
-  }
-  
-  private func tooglePlayButtonUI(_ playing: Bool){
-    let btnImage = playing ? UIImage(named: "playIcon") : UIImage(named: "pauseIcon")
-    playButton.setImage(btnImage, for: .normal)
   }
 }

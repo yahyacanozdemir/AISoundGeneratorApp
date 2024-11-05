@@ -5,8 +5,6 @@
 //  Created by Yahya Can Özdemir on 2.11.2024.
 //
 
-import Foundation
-
 class HomeCoordinator: Coordinator {
   
   private var navigationController: BaseNavigationController
@@ -26,10 +24,8 @@ class HomeCoordinator: Coordinator {
 }
 
 extension HomeCoordinator {
-  func navigateToVoiceGeneratingPage(userData: UserVoiceSelection) {
+  func navigateToVoiceGeneratingPage(userData: VoiceGenerateParameters) {
     let voiceGeneratingCoordinator = VoiceGeneratingCoordinator(navigationController: navigationController)
     voiceGeneratingCoordinator.start(userData: userData)
   }
 }
-
-import Foundation

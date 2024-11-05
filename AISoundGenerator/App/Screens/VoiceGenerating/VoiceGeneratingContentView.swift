@@ -6,14 +6,15 @@
 //
 
 import UIKit
+import AVFoundation
 
 protocol VoiceGeneratingContentViewDelegate: AnyObject {
-  func voiceGenerated(resultUrl: String)
+  func voiceGenerated(resultUrl: String, voicePrompt: String)
 }
 
 class VoiceGeneratingContentView: BaseView {
 
-  init(_ userData: UserVoiceSelection) {
+  init(_ userData: VoiceGenerateParameters) {
     self.userData = userData
     super.init()
   }
@@ -22,12 +23,12 @@ class VoiceGeneratingContentView: BaseView {
     fatalError("init(coder:) has not been implemented")
   }
   
-  private var userData: UserVoiceSelection
+  private var userData: VoiceGenerateParameters
   weak var delegate: VoiceGeneratingContentViewDelegate?
     
   private lazy var animationBackgroundView: UIImageView = {
     let view = UIImageView()
-    view.image = UIImage(named: "circleGradientBackground")
+    view.image = UIImage.Catalog.gradientCircle
     view.contentMode = .scaleAspectFit
     view.layer.masksToBounds = false
     view.clipsToBounds = true
@@ -36,7 +37,7 @@ class VoiceGeneratingContentView: BaseView {
   
   private lazy var generatingImageView: UIImageView = {
     let icon = UIImageView()
-    icon.image = UIImage(named: "generatingIcon")
+    icon.image = UIImage.Catalog.generatingIcon
     icon.contentMode = .scaleAspectFit
     return icon
   }()
@@ -44,7 +45,7 @@ class VoiceGeneratingContentView: BaseView {
   private lazy var generatingTitleLabel: UILabel = {
     let label = UILabel()
     label.text = "Generating"
-    label.font = UIFont.Typography.titleLarge
+    label.font = UIFont.Typography.subheading1
     label.textAlignment = .center
     label.textColor = .papcornsWhite
     return label
@@ -53,7 +54,7 @@ class VoiceGeneratingContentView: BaseView {
   private lazy var generatingDescriptionLabel: UILabel = {
     let label = UILabel()
     label.text = "It may take up to few minutes for you to receive an AI-generated speech. You can find your voice record in Library."
-    label.font = UIFont.Typography.body6
+    label.font = UIFont.Typography.bodyMLg
     label.textAlignment = .center
     label.numberOfLines = 0
     label.textColor = .papcornsWhite
@@ -110,22 +111,24 @@ class VoiceGeneratingContentView: BaseView {
 
 extension VoiceGeneratingContentView: NetworkDelegate {
   
-  //TODO:
   private func generateVoice() {
+    let params = ["promp": userData.promp,
+                  "cover": userData.cover]
     let request = BaseRequest(
       endpoint: .generateVoice,
       method: .post,
-      parameters: ["promp": userData.promp,
-                   "cover": userData.cover],
+      parameters: params,
       parameterType: .body)
     sendRequest(request, responseType: VoiceResulEntity())
   }
   
-  //TODO:
+
   func networkDataReceived(_ data: Any?) {
     guard let response = data as? VoiceResulEntity, let resultUrl = response.resultUrl else { return }
-//    DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
-      self.delegate?.voiceGenerated(resultUrl: resultUrl)
-//    })
+    
+    //MARK: Animasyon gözükmesi için fazladan 2sn eklenmiştir.
+    DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
+      self.delegate?.voiceGenerated(resultUrl: resultUrl, voicePrompt: self.userData.promp)
+    })
   }
 }

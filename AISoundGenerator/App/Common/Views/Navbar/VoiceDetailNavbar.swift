@@ -39,7 +39,7 @@ class VoiceDetailNavbar: BaseView {
   
   private lazy var backButton: BaseButton = {
     let button = BaseButton()
-    button.setImage(UIImage(named: "backIcon"), for: .normal)
+    button.setImage(UIImage.Catalog.backIcon, for: .normal)
     button.onTap = { [weak self] in
       self?.onTapBack?()
     }
@@ -49,23 +49,23 @@ class VoiceDetailNavbar: BaseView {
   private lazy var titleLabel: UILabel = {
     let label = UILabel()
     label.text = "Part Simpson"
-    label.font = UIFont.Typography.bodyBld
+    label.font = UIFont.Typography.subheading3
     label.textColor = .white
     return label
   }()
   
   private lazy var optionsButton: BaseButton = {
     let button = BaseButton()
-    button.setImage(UIImage(named: "menuIcon"), for: .normal)
+    button.setImage(UIImage.Catalog.menuIcon, for: .normal)
     return button
   }()
   
   private func setupMenu() {
-    let shareAction = UIAction(title: "Share", image: UIImage(systemName: "square.and.arrow.up")) { _ in
+    let shareAction = UIAction(title: "Share", image: UIImage.Catalog.shareIcon) { _ in
       self.onTapShare?()
     }
     
-    let copyAction = UIAction(title: "Copy Text", image: UIImage(systemName: "doc.on.doc")) { _ in
+    let copyAction = UIAction(title: "Copy Text", image: UIImage.Catalog.copyTextIcon) { _ in
       self.onTapCopyText?()
     }
     

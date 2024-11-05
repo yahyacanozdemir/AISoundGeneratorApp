@@ -11,45 +11,37 @@ import UIKit
 
 extension UIFont {
   enum Typography {
-    static let titleLarge2 = UIFont.sfPro(style: .bold, size: 34, lineHeight: 42)
-    static let titleLarge = UIFont.sfPro(style: .semibold, size: 34, lineHeight: 42)
-    static let titleMedium = UIFont.sfPro(style: .bold, size: 22, lineHeight: 28)
-    
-    static let bodyBld = UIFont.sfPro(style: .bold, size: 17, lineHeight: 22)
-    
-    static let title1 = UIFont.sfPro(style: .semibold, size: 26, lineHeight: 32)
-
-    static let bodySmb6 = UIFont.sfPro(style: .semibold, size: 17, lineHeight: 22)
-    static let bodySmb5 = UIFont.sfPro(style: .semibold, size: 16, lineHeight: 22)
-    static let bodySmb4 = UIFont.sfPro(style: .semibold, size: 15, lineHeight: 22)
-    static let bodySmb3 = UIFont.sfPro(style: .semibold, size: 14, lineHeight: 22)
-    static let bodySmb2 = UIFont.sfPro(style: .semibold, size: 13, lineHeight: 22)
-    static let bodySmb1 = UIFont.sfPro(style: .semibold, size: 12, lineHeight: 22)
-
-    
-    static let body6 = UIFont.sfPro(style: .regular, size: 17, lineHeight: 22)
-    static let body5 = UIFont.sfPro(style: .regular, size: 16, lineHeight: 22)
-    static let body4 = UIFont.sfPro(style: .regular, size: 15, lineHeight: 22)
-    static let body3 = UIFont.sfPro(style: .regular, size: 14, lineHeight: 22)
-    static let body2 = UIFont.sfPro(style: .regular, size: 13, lineHeight: 22)
-    static let body1 = UIFont.sfPro(style: .regular, size: 12, lineHeight: 22)
-
-
-    static let caption = UIFont.sfPro(style: .semibold, size: 11, lineHeight: 13)
+      // bold
+       static let heading1 = UIFont.sfPro(style: .bold700, size: 34, lineHeight: 42)
+       static let heading2 = UIFont.sfPro(style: .bold700, size: 26, lineHeight: 32)
+       static let heading3 = UIFont.sfPro(style: .bold700, size: 17, lineHeight: 22)
+       
+       // semibold
+       static let subheading1 = UIFont.sfPro(style: .semiBold600, size: 34, lineHeight: 42)
+       static let subheading2 = UIFont.sfPro(style: .semiBold600, size: 26, lineHeight: 32)
+       static let subheading3 = UIFont.sfPro(style: .semiBold600, size: 17, lineHeight: 22)
+       static let subheading4 = UIFont.sfPro(style: .semiBold600, size: 15, lineHeight: 20)
+       
+       // regular
+       static let bodyLg = UIFont.sfPro(style: .regular400, size: 17, lineHeight: 22)
+       static let bodyMLg = UIFont.sfPro(style: .regular400, size: 17, lineHeight: 20)
+       static let bodyMd = UIFont.sfPro(style: .regular400, size: 15, lineHeight: 19)
+       static let bodySm = UIFont.sfPro(style: .regular400, size: 13, lineHeight: 18)
+       static let captionSm = UIFont.sfPro(style: .regular400, size: 12, lineHeight: 16)
   }
 }
 
 extension UIFont {
   enum SFProStyle: String {
-    case bold = "SFProDisplay-Bold"
-    case semibold = "SFProDisplay-Semibold"
-    case regular = "SFProDisplay-Regular"
+    case regular400 = "SFProDisplay-Regular"
+    case semiBold600 = "SFProDisplay-Semibold"
+    case bold700 = "SFProDisplay-Bold"
   }
 
   static func sfPro(style: SFProStyle, size: CGFloat, lineHeight: CGFloat? = nil) -> UIFont {
     guard let font = UIFont(name: style.rawValue, size: size) else {
       switch style {
-      case .bold, .semibold:
+      case .bold700, .semiBold600:
         return UIFont.boldSystemFont(ofSize: size).withLineHeight(lineHeight ?? 0)
       default:
         return UIFont.systemFont(ofSize: size).withLineHeight(lineHeight ?? 0)

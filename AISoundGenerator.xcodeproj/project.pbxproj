@@ -56,6 +56,11 @@
 		D34B46692CD8262900CCA914 /* UserVoiceSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34B46682CD8262900CCA914 /* UserVoiceSelection.swift */; };
 		D34B466B2CD931C900CCA914 /* VoiceDetailNavbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34B466A2CD931C900CCA914 /* VoiceDetailNavbar.swift */; };
 		D34B466D2CD9822800CCA914 /* VoicePlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34B466C2CD9822800CCA914 /* VoicePlayerView.swift */; };
+		D34B46712CDA7AEE00CCA914 /* FullScreenIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34B46702CDA7AEE00CCA914 /* FullScreenIndicator.swift */; };
+		D34B46732CDA7C3B00CCA914 /* UIApplicationExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34B46722CDA7C3B00CCA914 /* UIApplicationExt.swift */; };
+		D34B46782CDAA2C600CCA914 /* VoicePlayerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34B46772CDAA2C600CCA914 /* VoicePlayerError.swift */; };
+		D34B467A2CDAA55200CCA914 /* ModalManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34B46792CDAA55200CCA914 /* ModalManager.swift */; };
+		D34B467D2CDAB1B400CCA914 /* Catalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34B467C2CDAB1B400CCA914 /* Catalog.swift */; };
 		D34B7BF62CD79A1E009A6763 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34B7BF52CD79A1E009A6763 /* AppDelegate.swift */; };
 		D34B7BF82CD79A1E009A6763 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34B7BF72CD79A1E009A6763 /* SceneDelegate.swift */; };
 		D34B7BFD2CD79A1E009A6763 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D34B7BFB2CD79A1E009A6763 /* Main.storyboard */; };
@@ -108,6 +113,11 @@
 		D34B46682CD8262900CCA914 /* UserVoiceSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserVoiceSelection.swift; sourceTree = "<group>"; };
 		D34B466A2CD931C900CCA914 /* VoiceDetailNavbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceDetailNavbar.swift; sourceTree = "<group>"; };
 		D34B466C2CD9822800CCA914 /* VoicePlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoicePlayerView.swift; sourceTree = "<group>"; };
+		D34B46702CDA7AEE00CCA914 /* FullScreenIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullScreenIndicator.swift; sourceTree = "<group>"; };
+		D34B46722CDA7C3B00CCA914 /* UIApplicationExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplicationExt.swift; sourceTree = "<group>"; };
+		D34B46772CDAA2C600CCA914 /* VoicePlayerError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoicePlayerError.swift; sourceTree = "<group>"; };
+		D34B46792CDAA55200CCA914 /* ModalManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalManager.swift; sourceTree = "<group>"; };
+		D34B467C2CDAB1B400CCA914 /* Catalog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Catalog.swift; sourceTree = "<group>"; };
 		D34B7BF22CD79A1E009A6763 /* AISoundGenerator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AISoundGenerator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D34B7BF52CD79A1E009A6763 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D34B7BF72CD79A1E009A6763 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -151,6 +161,7 @@
 				D3199EC42CD79B00007990D3 /* StringExt.swift */,
 				D34B46632CD7B89C00CCA914 /* UIImageViewExt.swift */,
 				D3199EC52CD79B00007990D3 /* UIViewExt.swift */,
+				D34B46722CDA7C3B00CCA914 /* UIApplicationExt.swift */,
 				D3199EC62CD79B00007990D3 /* UICollectionViewExt.swift */,
 			);
 			path = Extension;
@@ -162,6 +173,7 @@
 				D3199EC82CD79B00007990D3 /* BaseRequest.swift */,
 				D3199EC92CD79B00007990D3 /* NetworkManager.swift */,
 				D3199ECA2CD79B00007990D3 /* NavbarManager.swift */,
+				D34B46792CDAA55200CCA914 /* ModalManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -237,6 +249,7 @@
 			isa = PBXGroup;
 			children = (
 				D3199F022CD79C06007990D3 /* AppSettings.swift */,
+				D36DE26B2CDACABF00E63E5C /* Main */,
 				D3199EF32CD79BBB007990D3 /* Resources */,
 				D3199F042CD79C83007990D3 /* Delegates */,
 				D3199F052CD79E3D007990D3 /* Common */,
@@ -250,6 +263,7 @@
 			children = (
 				D3199ECD2CD79B00007990D3 /* DataStore */,
 				D3199EF62CD79BD5007990D3 /* FontCatalog */,
+				D34B467B2CDAB0CF00CCA914 /* ImageCatalog */,
 				D34B7BFE2CD79A1F009A6763 /* Assets.xcassets */,
 				D3199EF52CD79BD5007990D3 /* ColorAssets.xcassets */,
 			);
@@ -287,6 +301,7 @@
 		D3199F052CD79E3D007990D3 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				D34B46762CDAA28F00CCA914 /* AppErrors */,
 				D3199F062CD79E3D007990D3 /* Views */,
 			);
 			path = Common;
@@ -295,10 +310,9 @@
 		D3199F062CD79E3D007990D3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D34B46752CDA9F4800CCA914 /* Base */,
+				D34B46742CDA9F2F00CCA914 /* Components */,
 				D3199F072CD79E3D007990D3 /* Navbar */,
-				D3199F092CD79E3D007990D3 /* PromptInputView.swift */,
-				D3199F0A2CD79E3D007990D3 /* BaseButton.swift */,
-				D34B466C2CD9822800CCA914 /* VoicePlayerView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -316,8 +330,8 @@
 			isa = PBXGroup;
 			children = (
 				D3199F0C2CD79E3D007990D3 /* Home */,
-				D3199F132CD79E3D007990D3 /* VoiceDetail */,
 				D3199F1A2CD79E3D007990D3 /* VoiceGenerating */,
+				D3199F132CD79E3D007990D3 /* VoiceDetail */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -370,6 +384,40 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		D34B46742CDA9F2F00CCA914 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				D3199F092CD79E3D007990D3 /* PromptInputView.swift */,
+				D34B466C2CD9822800CCA914 /* VoicePlayerView.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		D34B46752CDA9F4800CCA914 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				D34B46702CDA7AEE00CCA914 /* FullScreenIndicator.swift */,
+				D3199F0A2CD79E3D007990D3 /* BaseButton.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		D34B46762CDAA28F00CCA914 /* AppErrors */ = {
+			isa = PBXGroup;
+			children = (
+				D34B46772CDAA2C600CCA914 /* VoicePlayerError.swift */,
+			);
+			path = AppErrors;
+			sourceTree = "<group>";
+		};
+		D34B467B2CDAB0CF00CCA914 /* ImageCatalog */ = {
+			isa = PBXGroup;
+			children = (
+				D34B467C2CDAB1B400CCA914 /* Catalog.swift */,
+			);
+			path = ImageCatalog;
+			sourceTree = "<group>";
+		};
 		D34B7BE92CD79A1E009A6763 = {
 			isa = PBXGroup;
 			children = (
@@ -391,11 +439,18 @@
 			children = (
 				D3199EF22CD79BB3007990D3 /* App */,
 				D3199EC02CD79B00007990D3 /* Core */,
-				D34B7BFB2CD79A1E009A6763 /* Main.storyboard */,
-				D34B7C002CD79A1F009A6763 /* LaunchScreen.storyboard */,
 				D34B7C032CD79A1F009A6763 /* Info.plist */,
 			);
 			path = AISoundGenerator;
+			sourceTree = "<group>";
+		};
+		D36DE26B2CDACABF00E63E5C /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				D34B7BFB2CD79A1E009A6763 /* Main.storyboard */,
+				D34B7C002CD79A1F009A6763 /* LaunchScreen.storyboard */,
+			);
+			path = Main;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -493,6 +548,7 @@
 				D3199EE82CD79B00007990D3 /* VoicesEntity.swift in Sources */,
 				D3199EE22CD79B00007990D3 /* UICollectionViewExt.swift in Sources */,
 				D3199F1F2CD79E3D007990D3 /* PromptInputView.swift in Sources */,
+				D34B46782CDAA2C600CCA914 /* VoicePlayerError.swift in Sources */,
 				D3199EDE2CD79B00007990D3 /* UITableViewExt.swift in Sources */,
 				D3199F252CD79E3D007990D3 /* HomeVC.swift in Sources */,
 				D34B7BF62CD79A1E009A6763 /* AppDelegate.swift in Sources */,
@@ -501,6 +557,7 @@
 				D3199EEF2CD79B00007990D3 /* BindableLayout.swift in Sources */,
 				D3199EFE2CD79BD5007990D3 /* Typography.swift in Sources */,
 				D3199F282CD79E3D007990D3 /* VoiceDetailVC.swift in Sources */,
+				D34B46732CDA7C3B00CCA914 /* UIApplicationExt.swift in Sources */,
 				D3199EE62CD79B00007990D3 /* InspirationsData.swift in Sources */,
 				D3199EDF2CD79B00007990D3 /* UIColorExt.swift in Sources */,
 				D34B466D2CD9822800CCA914 /* VoicePlayerView.swift in Sources */,
@@ -508,6 +565,7 @@
 				D3199F2E2CD79E3D007990D3 /* VoiceGeneratingContentView.swift in Sources */,
 				D3199F232CD79E3D007990D3 /* HomeContentView.swift in Sources */,
 				D3199F212CD79E3D007990D3 /* CategoryCell.swift in Sources */,
+				D34B467D2CDAB1B400CCA914 /* Catalog.swift in Sources */,
 				D3199EE92CD79B00007990D3 /* VoiceResultEntity.swift in Sources */,
 				D3199F222CD79E3D007990D3 /* VoiceCell.swift in Sources */,
 				D3199EEC2CD79B00007990D3 /* BaseCollectionViewCell.swift in Sources */,
@@ -518,6 +576,8 @@
 				D34B7BF82CD79A1E009A6763 /* SceneDelegate.swift in Sources */,
 				D34B46692CD8262900CCA914 /* UserVoiceSelection.swift in Sources */,
 				D3199F272CD79E3D007990D3 /* VoiceDetailCoordinator.swift in Sources */,
+				D34B467A2CDAA55200CCA914 /* ModalManager.swift in Sources */,
+				D34B46712CDA7AEE00CCA914 /* FullScreenIndicator.swift in Sources */,
 				D3199EE72CD79B00007990D3 /* NetworkError.swift in Sources */,
 				D34B466B2CD931C900CCA914 /* VoiceDetailNavbar.swift in Sources */,
 				D3199EF02CD79B00007990D3 /* BaseNavigationController.swift in Sources */,
@@ -682,6 +742,8 @@
 				DEVELOPMENT_TEAM = F3K47YAAZP;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AISoundGenerator/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Voice Generator";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -710,6 +772,8 @@
 				DEVELOPMENT_TEAM = F3K47YAAZP;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AISoundGenerator/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Voice Generator";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;

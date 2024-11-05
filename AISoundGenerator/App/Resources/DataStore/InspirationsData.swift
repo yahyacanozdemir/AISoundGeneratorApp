@@ -8,7 +8,7 @@
 import Foundation
 
 struct InspirationsData {
-  static let inspirations: [String] = [
+  private static let inspirations: [String] = [
     "an atmospheric sleep soundscape with distant celestial melodies, creating a sense of floating in a calm night sky",
     "a dreamy music box melody that transports listeners to a serene and restful dreamland",
     "a calming meditation piece with the sounds of falling rain, distant thunder, and gentle wind chimes",
@@ -20,8 +20,7 @@ struct InspirationsData {
     "a meditative drone piece that mirrors the rhythmic patterns of ocean waves, gradually building in intensity and subsiding like the tide"
   ]
   
-  static func getRandomInspiration() -> String {
-    return inspirations.randomElement() ?? ""
+  static func getRandomInspiration() -> String? {
+    return inspirations.randomElement()
   }
 }
-

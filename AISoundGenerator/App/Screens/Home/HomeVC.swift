@@ -15,8 +15,10 @@ class HomeVC: BaseVC<HomeContentView> {
   }
 }
 
+//MARK: Navigation
+
 extension HomeVC: HomeContentViewDelegate {
-  func generateButtonTapped(userData: UserVoiceSelection) {
+  func generateButtonTapped(userData: VoiceGenerateParameters) {
     coordinator?.navigateToVoiceGeneratingPage(userData: userData)
   }
 }

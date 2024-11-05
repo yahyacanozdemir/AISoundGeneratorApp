@@ -7,4 +7,6 @@
 
 struct AppSettings {
   static let baseAPIURL = "https://us-central1-ai-video-40ecf.cloudfunctions.net/"
+  
+  // environment configs..
 }

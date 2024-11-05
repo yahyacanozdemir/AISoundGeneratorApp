@@ -8,7 +8,7 @@
 import UIKit
 
 protocol HomeContentViewDelegate: AnyObject {
-  func generateButtonTapped(userData: UserVoiceSelection)
+  func generateButtonTapped(userData: VoiceGenerateParameters)
 }
 
 class HomeContentView: BaseView {
@@ -16,7 +16,7 @@ class HomeContentView: BaseView {
   weak var delegate: HomeContentViewDelegate?
   
   private var categories: [String]?
-  private var selectedCategoryName = "Tümü"
+  private var selectedCategoryName: String?
 
   private var selectedVoiceName: String? {
     didSet { isContinuable() }
@@ -28,15 +28,17 @@ class HomeContentView: BaseView {
   
   private lazy var userPromptTextView: PromptInputView = {
     let input = PromptInputView(onlyShowPrompt: false)
-    input.userPromptDidChanged = { self.isContinuable() }
+    input.userPromptDidChanged = { [weak self] in
+      self?.isContinuable()
+    }
     return input
   }()
 
   private lazy var voiceSelectionLabel : UILabel = {
     let label = UILabel()
     label.text = "Pick a Voice"
-    label.font = UIFont.Typography.titleLarge
-    label.textColor = .white
+    label.font = UIFont.Typography.heading2
+    label.textColor = .papcornsWhite
     return label
   }()
   
@@ -81,14 +83,14 @@ class HomeContentView: BaseView {
     let button = BaseButton()
     button.title = "Continue"
     button.titleColor = .papcornsWhite
-    button.titleLabel?.font = UIFont.Typography.bodyBld
+    button.titleLabel?.font = UIFont.Typography.heading3
     button.addRadius(10)
     button.isDisabled = true
     button.isGradientButton = true
     
     button.onTap = { [weak self] in
       guard let promp = self?.userPromptTextView.userPromptText, let cover = self?.selectedVoiceName else { return }
-      let userData = UserVoiceSelection(promp: promp, cover: cover)
+      let userData = VoiceGenerateParameters(promp: promp, cover: cover)
       self?.delegate?.generateButtonTapped(userData: userData)
     }
     return button
@@ -146,6 +148,8 @@ class HomeContentView: BaseView {
     
     categoriesCollectionView.reloadData()
     voicesCollectionView.reloadData()
+    
+    categoriesCollectionView.selectItem(at: IndexPath(row: 0, section: 0), animated: false, scrollPosition: .centeredHorizontally)
   }
   
   private func isContinuable() {
@@ -157,7 +161,7 @@ class HomeContentView: BaseView {
 
 extension HomeContentView: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    return collectionView == categoriesCollectionView ? categories?.count ?? 0 : homeContent?[selectedCategoryName]??.count ?? 0
+    return collectionView == categoriesCollectionView ? categories?.count ?? 0 : homeContent?[selectedCategoryName ?? ""]??.count ?? 0
   }
   
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -167,7 +171,7 @@ extension HomeContentView: UICollectionViewDataSource, UICollectionViewDelegate,
       return cell
     } else {
       let cell = collectionView.dequeueCell(withClassAndIdentifier: VoiceCell.self, for: indexPath)
-      cell.voice = homeContent?[selectedCategoryName]??[indexPath.row]
+      cell.voice = homeContent?[selectedCategoryName ?? ""]??[indexPath.row]
       return cell
     }
   }
@@ -181,7 +185,9 @@ extension HomeContentView: UICollectionViewDataSource, UICollectionViewDelegate,
       voicesCollectionView.reloadData()
       
       cell.isSelected = true
+      
       collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+      voicesCollectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .centeredVertically, animated: true)
     } else if let cell = collectionView.cellForItem(at: indexPath) as? VoiceCell {
       selectedVoiceName = cell.voice?.name
       cell.isSelected = true
@@ -194,7 +200,7 @@ extension HomeContentView: UICollectionViewDataSource, UICollectionViewDelegate,
       return CGSize(width: 100, height: 140)
     }
     
-    let width = category.calculateLabelWidth(with: UIFont.Typography.body6, maxHeight: 22) + 64
+    let width = category.calculateLabelWidth(with: UIFont.Typography.bodyMd, maxHeight: 19) + 64
     return CGSize(width: width, height: 40)
   }
 }
@@ -211,9 +217,9 @@ extension HomeContentView: NetworkDelegate {
   
   func networkDataReceived(_ data: Any?) {
     guard let response = data as? VoicesEntity else { return }
-    homeContent = response.getObjectsByCategory()
     categories = response.getCategories()
-    categoriesCollectionView.selectItem(at: IndexPath(row: 0, section: 0), animated: false, scrollPosition: .centeredHorizontally)
+    selectedCategoryName = categories?.first
+    homeContent = response.getObjectsByCategory()
   }
 }
 

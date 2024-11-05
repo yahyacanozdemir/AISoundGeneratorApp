@@ -10,15 +10,11 @@ import UIKit
 class VoiceCell: BaseCollectionViewCell {
   
   override var isSelected: Bool {
-    didSet {
-      setSelected(isSelected)
-    }
+    didSet { setSelected(isSelected) }
   }
   
   var voice: VoiceItem? {
-    didSet {
-      updateUI()
-    }
+    didSet { updateUI() }
   }
   
   private lazy var voiceImageView: UIImageView = {
@@ -38,7 +34,7 @@ class VoiceCell: BaseCollectionViewCell {
   
   private lazy var playingImageView: UIImageView = {
     let imageView = UIImageView()
-    imageView.image = UIImage(named: "playingIcon")
+    imageView.image = UIImage.Catalog.playingIcon
     imageView.contentMode = .scaleAspectFit
     imageView.isHidden = true
     return imageView
@@ -47,7 +43,7 @@ class VoiceCell: BaseCollectionViewCell {
   private lazy var label: UILabel = {
     let label = UILabel()
     label.textColor = .white
-    label.font = UIFont.Typography.body6
+    label.font = UIFont.Typography.bodyLg
     label.textAlignment = .center
     return label
   }()

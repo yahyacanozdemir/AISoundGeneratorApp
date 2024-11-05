@@ -10,30 +10,54 @@ import UIKit
 class VoiceDetailVC: BaseVC<VoiceDetailContentView> {
   var coordinator: VoiceDetailCoordinator?
   
+  override func viewDidAppear(_ animated: Bool) {
+    FullScreenIndicator.shared.showLoadingView(true)
+  }
+  
+  override func viewDidDisappear(_: Bool) {
+    FullScreenIndicator.shared.showLoadingView(false)
+  }
+  
+  override func viewWillDisappear(_ animated: Bool) {
+    contentView?.deinitVoicePlayer()
+  }
+  
   override func bind() {
     contentView?.delegate = self
     
     if let navBar = selectedNavBar as? VoiceDetailNavbar {
-      navBar.onTapBack = {
-        self.coordinator?.pop()
+      navBar.onTapBack = { [weak self] in
+        self?.coordinator?.navigationController.popToRootViewController(animated: true)
+      }
+      
+      navBar.onTapShare = { [weak self] in
+        self?.contentView?.downloadAndShareVoice()
+      }
+      
+      navBar.onTapCopyText = { [weak self] in
+        let pasteboard = UIPasteboard.general
+        pasteboard.string = self?.contentView?.voicePromptText
+        
+        ModalManager.shared.showSystemAlert(title: "İşlem Başarılı",
+                                            message: "Prompt Kopyalandı")
       }
     }
   }
 }
 
 extension VoiceDetailVC: VoiceDetailDelegate {
-  func showErrorPopup(title: String?, message: String?) {
-    showErrorPopup(on: self, title: title, message: message)
+  func showPopup(title: String, message: String) {
+    ModalManager.shared.showSystemAlert(title: title,
+                                        message: message,
+                                        action: UIAlertAction(title: "Geri Dön",
+                                                              style: .default,
+                                                              handler: { action in
+                                                              self.coordinator?.navigationController.popToRootViewController(animated: true)
+                                                              }
+                                                             ))
   }
-}
-
-extension VoiceDetailVC {
-  func showErrorPopup(on viewController: UIViewController, title: String? = "Hata", message: String? = "Bir problem oluştu") {
-    let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-    
-    let okAction = UIAlertAction(title: "Tamam", style: .default, handler: nil)
-    alert.addAction(okAction)
-    
-    viewController.present(alert, animated: true, completion: nil)
+  
+  func showShareSheet(_ fileUrl: URL) {
+    ModalManager.shared.showSaveOrShareSheet(fileUrl: fileUrl)
   }
 }
