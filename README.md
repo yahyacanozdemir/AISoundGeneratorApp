@@ -53,6 +53,7 @@ Bu proje Papcorns şirketinin gönderdiği aday challange'ı kapsamıdna tarafı
 - **[SnapKit](https://github.com/SnapKit/SnapKit):** Kullanıcı arayüzünü Auto Layout ile dinamik şekilde oluşturmak için kullanıldı.
 - **[Alamofire](https://github.com/Alamofire/Alamofire):** API (network) istekleri ve ses dosyası indirme işlemleri için kullanıldı.
 - **[Kingfisher](https://github.com/onevcat/Kingfisher):** Remote görsellerin dinamik şekilde yüklenmesi için kullanıldı.
+- **[AVFoundation](https://developer.apple.com/documentation/avfoundation/):** Ses dosyasının oynatıldığı AVPlayer ile ilgi işlemler için kullanıldı.
 
 ### NetworkManager Sınıfı
 
