@@ -148,6 +148,10 @@ extension PromptInputView: UITextViewDelegate {
   
   func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
     let newText = textView.text!
+    if(text == "\n") {
+      textView.resignFirstResponder()
+      return false
+    }
     return (newText.count + text.count) <= maxCharacterCount
   }
   
