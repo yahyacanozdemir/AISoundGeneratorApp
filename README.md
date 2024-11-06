@@ -3,11 +3,10 @@
 Bu proje Papcorns şirketinin gönderdiği aday challange'ı kapsamıdna tarafımca 3 günlük süreçte, XCODE üzerinde ve Swift UIKit ile geliştirilmiş bir mobil uygulamadır. Uygulama, kullanıcıların farklı ses türlerinden ses dosyaları oluşturmasına, bunları çalmasına, indirmesine ve paylaşmasına olanak tanır.
 
 ## İçindekiler
-
-- [Proje Yapısı](#proje-yapısı)
-- [Kullanılan Kütüphaneler](#kullanılan-kütüphaneler)
 - [Özellikler](#özellikler)
 - [Sayfa Detayları](#sayfa-detayları)
+- [Proje Yapısı](#proje-yapısı)
+- [Kullanılan Kütüphaneler](#kullanılan-kütüphaneler)
 - [Network Manager Sınıfı](#networkManager-sınıfı)
 - [Kurulum](#kurulum)
 - [Geliştirici](#geliştirici)
@@ -15,6 +14,8 @@ Bu proje Papcorns şirketinin gönderdiği aday challange'ı kapsamıdna tarafı
 ---
 
 ## Özellikler
+
+![Voice Generator App](https://github.com/user-attachments/assets/97868171-2700-4d35-b7a8-d91b73b978f7)
 
 - **Ses Dosyası Üretimi:** Farklı ses türleri ve kullanıcı prompt’larına göre ses dosyaları üretilir.
 - **Animasyonlu Geçişler:** Ses üretimi sırasında kullanıcıya animasyonlu bir arayüz gösterilir.
