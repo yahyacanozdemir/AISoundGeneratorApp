@@ -83,5 +83,5 @@ Bu proje, kullanıcı deneyimini ön planda tutarak geliştirilmiş, modüler ve
 
 - **Geliştirici Adı:** Yahya Can Özdemir
 - **E-posta:** yahyacanozdemir@gmail.com
-- **LinkedIn:** [[LinkedIn Profiliniz](https://www.linkedin.com/in/yahyacanozdemir/)]
+- **LinkedIn:** [yahyacanozdemir(https://www.linkedin.com/in/yahyacanozdemir/)]
 
