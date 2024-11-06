@@ -8,10 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		D3199EB52CD79ABC007990D3 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = D3199EB42CD79ABC007990D3 /* SnapKit */; };
-		D3199EB72CD79ABC007990D3 /* SnapKit-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = D3199EB62CD79ABC007990D3 /* SnapKit-Dynamic */; };
 		D3199EBA2CD79AC8007990D3 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = D3199EB92CD79AC8007990D3 /* Kingfisher */; };
 		D3199EBD2CD79AD8007990D3 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = D3199EBC2CD79AD8007990D3 /* Alamofire */; };
-		D3199EBF2CD79AD8007990D3 /* AlamofireDynamic in Frameworks */ = {isa = PBXBuildFile; productRef = D3199EBE2CD79AD8007990D3 /* AlamofireDynamic */; };
 		D3199EDE2CD79B00007990D3 /* UITableViewExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3199EC22CD79B00007990D3 /* UITableViewExt.swift */; };
 		D3199EDF2CD79B00007990D3 /* UIColorExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3199EC32CD79B00007990D3 /* UIColorExt.swift */; };
 		D3199EE02CD79B00007990D3 /* StringExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3199EC42CD79B00007990D3 /* StringExt.swift */; };
@@ -67,6 +65,19 @@
 		D34B7BFF2CD79A1F009A6763 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D34B7BFE2CD79A1F009A6763 /* Assets.xcassets */; };
 		D34B7C022CD79A1F009A6763 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D34B7C002CD79A1F009A6763 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		D3B87CA52CDB78E100D69F9C /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		D3199EC22CD79B00007990D3 /* UITableViewExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableViewExt.swift; sourceTree = "<group>"; };
@@ -134,9 +145,7 @@
 			files = (
 				D3199EBA2CD79AC8007990D3 /* Kingfisher in Frameworks */,
 				D3199EBD2CD79AD8007990D3 /* Alamofire in Frameworks */,
-				D3199EBF2CD79AD8007990D3 /* AlamofireDynamic in Frameworks */,
 				D3199EB52CD79ABC007990D3 /* SnapKit in Frameworks */,
-				D3199EB72CD79ABC007990D3 /* SnapKit-Dynamic in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -463,6 +472,7 @@
 				D34B7BEE2CD79A1E009A6763 /* Sources */,
 				D34B7BEF2CD79A1E009A6763 /* Frameworks */,
 				D34B7BF02CD79A1E009A6763 /* Resources */,
+				D3B87CA52CDB78E100D69F9C /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -471,10 +481,8 @@
 			name = AISoundGenerator;
 			packageProductDependencies = (
 				D3199EB42CD79ABC007990D3 /* SnapKit */,
-				D3199EB62CD79ABC007990D3 /* SnapKit-Dynamic */,
 				D3199EB92CD79AC8007990D3 /* Kingfisher */,
 				D3199EBC2CD79AD8007990D3 /* Alamofire */,
-				D3199EBE2CD79AD8007990D3 /* AlamofireDynamic */,
 			);
 			productName = AISoundGenerator;
 			productReference = D34B7BF22CD79A1E009A6763 /* AISoundGenerator.app */;
@@ -739,7 +747,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = F3K47YAAZP;
+				DEVELOPMENT_TEAM = FMZX422M2X;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AISoundGenerator/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Voice Generator";
@@ -769,7 +777,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = F3K47YAAZP;
+				DEVELOPMENT_TEAM = FMZX422M2X;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AISoundGenerator/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Voice Generator";
@@ -847,11 +855,6 @@
 			package = D3199EB32CD79ABC007990D3 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
 		};
-		D3199EB62CD79ABC007990D3 /* SnapKit-Dynamic */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = D3199EB32CD79ABC007990D3 /* XCRemoteSwiftPackageReference "SnapKit" */;
-			productName = "SnapKit-Dynamic";
-		};
 		D3199EB92CD79AC8007990D3 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = D3199EB82CD79AC8007990D3 /* XCRemoteSwiftPackageReference "Kingfisher" */;
@@ -861,11 +864,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = D3199EBB2CD79AD8007990D3 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
-		};
-		D3199EBE2CD79AD8007990D3 /* AlamofireDynamic */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = D3199EBB2CD79AD8007990D3 /* XCRemoteSwiftPackageReference "Alamofire" */;
-			productName = AlamofireDynamic;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -6,8 +6,8 @@
 //
 
 enum VoicePlayerError: String {
-  case invalidDurationTime = "Ses dosyasında duration değeri doğru dönüştürülemedi."
-  case durationKeyInvalid = "Ses dosyasından duration bilgisi alınamadı."
-  case durationCantLoad = "Ses dosyasından duration bilgisi yüklenemedi"
+  case invalidDurationTime = "Ses dosyasının süre değeri doğru dönüştürülemedi."
+  case durationKeyInvalid = "Ses dosyasının süre bilgisi alınamadı."
+  case durationCantLoad = "Ses dosyasından süre bilgisi yüklenemedi"
   case anErrorOccured = "Bir hata meydana geldi."
 }

@@ -188,11 +188,13 @@ extension HomeContentView: UICollectionViewDataSource, UICollectionViewDelegate,
       
       collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
       voicesCollectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .centeredVertically, animated: true)
+      
     } else if let cell = collectionView.cellForItem(at: indexPath) as? VoiceCell {
       selectedVoiceName = cell.voice?.name
       cell.isSelected = true
       collectionView.scrollToItem(at: indexPath, at: .centeredVertically, animated: true)
     }
+    endEditing(true)
   }
   
   func collectionView(_ collectionView: UICollectionView, layout _: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

@@ -25,15 +25,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, UIApplicationDelegate {
     homeCoordinator?.start()
 
     window?.makeKeyAndVisible()
-
-    
-    //For dismissKeyboard on tap screen without any keyboard package
-//    window?.addGestureRecognizer(
-//      UITapGestureRecognizer(
-//        target: window,
-//        action: #selector(UIWindow.endEditing(_:))
-//      )
-//    )
   }
 
   func sceneDidDisconnect(_ scene: UIScene) {
@@ -63,7 +54,5 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, UIApplicationDelegate {
     // Use this method to save data, release shared resources, and store enough scene-specific state information
     // to restore the scene back to its current state.
   }
-
-
 }
 
