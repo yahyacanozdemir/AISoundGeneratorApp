@@ -17,13 +17,14 @@ Bu proje Papcorns şirketinin gönderdiği aday challange'ı kapsamıdna tarafı
 
 ## Özellikler
 ![App Features](https://github.com/user-attachments/assets/04cf726b-8984-4449-9254-22e2d36e9a75)
-![App Features](https://github.com/user-attachments/assets/66521fe1-4473-4280-a060-fb571763775e)
 
 - **Ses Dosyası Üretimi:** Farklı ses türleri ve kullanıcı prompt’larına göre ses dosyaları üretilir.
 - **Animasyonlu Geçişler:** Ses üretimi sırasında kullanıcıya animasyonlu bir arayüz gösterilir.
 - **Ses Kontrolü:** Üretilen ses dosyası çalınabilir, duraklatılabilir, ileri-geri sarılabilir ve döngü şeklinde oynatılabilir.
 - **İndirme ve Paylaşma:** Kullanıcı, üretilen ses dosyasını cihazına indirebilir veya paylaşabilir.
 - **Geri Bildirimler:** Kullanıcıya veri çekme esnasında loading animasyonları ve geri bildirim popup’ları sunulur.
+
+![App Features](https://github.com/user-attachments/assets/66521fe1-4473-4280-a060-fb571763775e)
 
 ## Sayfa Detayları
 
@@ -41,12 +42,10 @@ Bu proje Papcorns şirketinin gönderdiği aday challange'ı kapsamıdna tarafı
 
 ## Teknik
 
-### Proje Yapısı
-
-#### Design Pattern
+### Design Pattern
 - **Coordinator:** Ekranlar arası geçişleri ve gezinmeyi merkezi bir yapıdan yönetmek için kullanılan bir tasarım desenidir. Bu pattern, her bir navigation akışını kendine özgü bir `Coordinator` sınıfı tarafından yönetilmesini sağlayarak, `View` ve bileşen sınıflarını UI ve içerik yönetimiyle sınırlar. Böylece, navigasyon mantığı kontrolcülerden ayrılarak daha modüler, test edilebilir ve sürdürülebilir bir yapı elde edilir.
 
-#### Architecture
+### Architecture
 - **MVC-ComponentBase:** Uygulama, her bir sayfanın `BaseVC<BaseView>` sınıfından türetildiği, tüm bileşenlerin ise doğrudan `BaseView` sınıfından miras alarak yeniden kullanılabildiği, modüler ve kolay yönetilebilir bir mimari yapıyı kullanır. Bu mimari, ilgili `base` sınıflar ve protokoller aracılığıyla ağ işlemlerinin tek bir yapı üzerinden kolayca yönetilmesini sağlar. Bu yaklaşım, kodun anlaşılır ve tutarlı olmasını sağlarken yeniden kullanılabilirliği artırır ve geliştirme sürecini hızlandırır.
 
 ### Kullanılan Kütüphaneler
