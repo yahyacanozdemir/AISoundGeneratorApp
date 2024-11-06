@@ -43,7 +43,7 @@ Bu proje Papcorns şirketinin gönderdiği aday challange'ı kapsamıdna tarafı
 ## Teknik
 
 ### Design Pattern
-- **Coordinator:** Ekranlar arası geçişleri ve gezinmeyi merkezi bir yapıdan yönetmek için kullanılan bir tasarım desenidir. Bu pattern, her bir navigation akışını kendine özgü bir `Coordinator` sınıfı tarafından yönetilmesini sağlayarak, `View` ve bileşen sınıflarını UI ve içerik yönetimiyle sınırlar. Böylece, navigasyon mantığı kontrolcülerden ayrılarak daha modüler, test edilebilir ve sürdürülebilir bir yapı elde edilir.
+- **Coordinator:** Ekranlar arası geçişleri ve gezinmeyi merkezi bir yapıdan yönetmek için kullanılan bir tasarım desenidir. Bu pattern, her bir navigation akışını kendine özgü bir `Coordinator` sınıfı tarafından yönetilmesini sağlayarak, custom `contentView` ve `component` sınıflarını UI ve içerik yönetimiyle sınırlar. Böylece, navigasyon mantığı kontrolcülerden ayrılarak daha modüler, test edilebilir ve sürdürülebilir bir yapı elde edilir.
 
 ### Architecture
 - **MVC-ComponentBase:** Uygulama, her bir sayfanın `BaseVC<BaseView>` sınıfından türetildiği, tüm bileşenlerin ise doğrudan `BaseView` sınıfından miras alarak yeniden kullanılabildiği, modüler ve kolay yönetilebilir bir mimari yapıyı kullanır. Bu mimari, ilgili `base` sınıflar ve protokoller aracılığıyla ağ işlemlerinin tek bir yapı üzerinden kolayca yönetilmesini sağlar. Bu yaklaşım, kodun anlaşılır ve tutarlı olmasını sağlarken yeniden kullanılabilirliği artırır ve geliştirme sürecini hızlandırır.
