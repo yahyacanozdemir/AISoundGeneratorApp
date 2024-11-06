@@ -81,7 +81,7 @@ API işlemlerini ve ses dosyasını indirme işlemini yöneten singleton bir sı
 
 Bu proje, kullanıcı deneyimini ön planda tutarak geliştirilmiş, modüler ve kolayca genişletilebilir bir Swift uygulamasıdır. Projeye katkıda bulunmak veya sorularınızı iletmek için aşağıdaki bilgilere başvurabilirsiniz:
 
-- **Geliştirici Adı:** [Yahya Can Özdemir]
-- **E-posta:** [yahyacanozdemir@gmail.com]
+- **Geliştirici Adı:** Yahya Can Özdemir
+- **E-posta:** yahyacanozdemir@gmail.com
 - **LinkedIn:** [[LinkedIn Profiliniz](https://www.linkedin.com/in/yahyacanozdemir/)]
 
