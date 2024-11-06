@@ -1,5 +1,7 @@
 # Voice Generator iOS App
 
+![Voice Generator App](https://github.com/user-attachments/assets/97868171-2700-4d35-b7a8-d91b73b978f7)
+
 Bu proje Papcorns şirketinin gönderdiği aday challange'ı kapsamıdna tarafımca 3 günlük süreçte, XCODE üzerinde ve Swift UIKit ile geliştirilmiş bir mobil uygulamadır. Uygulama, kullanıcıların farklı ses türlerinden ses dosyaları oluşturmasına, bunları çalmasına, indirmesine ve paylaşmasına olanak tanır.
 
 ## İçindekiler
@@ -14,8 +16,8 @@ Bu proje Papcorns şirketinin gönderdiği aday challange'ı kapsamıdna tarafı
 ---
 
 ## Özellikler
-
-![Voice Generator App](https://github.com/user-attachments/assets/97868171-2700-4d35-b7a8-d91b73b978f7)
+![App Features](https://github.com/user-attachments/assets/04cf726b-8984-4449-9254-22e2d36e9a75)
+![App Features](https://github.com/user-attachments/assets/66521fe1-4473-4280-a060-fb571763775e)
 
 - **Ses Dosyası Üretimi:** Farklı ses türleri ve kullanıcı prompt’larına göre ses dosyaları üretilir.
 - **Animasyonlu Geçişler:** Ses üretimi sırasında kullanıcıya animasyonlu bir arayüz gösterilir.
