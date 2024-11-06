@@ -15,6 +15,7 @@ class VoiceGeneratingVC: BaseVC<VoiceGeneratingContentView>{
     
     if let navBar = selectedNavBar as? DefaultNavbar {
       navBar.onTapBack = { [weak self] in
+        self?.contentView?.networkDelegate = nil
         self?.coordinator?.pop()
       }
     }
