@@ -16,8 +16,12 @@ class HomeCoordinator: Coordinator {
   func start(navigationType _: NavigationType) { }
   
   func start() {
+    let repository = VoicesRepository()
+    let useCase = HomeUseCase(voicesRepository: repository)
+    let homeViewModel = HomeViewModel(useCase: useCase)
+    
     let vc = HomeVC(
-      contentView: HomeContentView())
+      contentView: HomeContentView(viewModel: homeViewModel))
     vc.coordinator = self
     navigationController.setViewControllers([vc], animated: false)
   }

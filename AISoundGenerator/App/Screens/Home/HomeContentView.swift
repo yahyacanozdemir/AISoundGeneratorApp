@@ -13,23 +13,24 @@ protocol HomeContentViewDelegate: AnyObject {
 
 class HomeContentView: BaseView {
   
+  private let viewModel: HomeViewModel
+  
+  init(viewModel: HomeViewModel) {
+    self.viewModel = viewModel
+    super.init()
+  }
+  
+  required init?(coder _: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
+  
   weak var delegate: HomeContentViewDelegate?
-  
-  private var categories: [String]?
-  private var selectedCategoryName: String?
 
-  private var selectedVoiceName: String? {
-    didSet { isContinuable() }
-  }
-
-  private var homeContent: [String: [VoiceItem?]?]? {
-    didSet { updateUI() }
-  }
-  
   private lazy var userPromptTextView: PromptInputView = {
     let input = PromptInputView(onlyShowPrompt: false)
-    input.userPromptDidChanged = { [weak self] in
-      self?.isContinuable()
+    input.userPromptDidChanged = {
+      self.viewModel.userPrompt = input.userPromptText
+      self.viewModel.isContinuable()
     }
     return input
   }()
@@ -88,10 +89,10 @@ class HomeContentView: BaseView {
     button.isDisabled = true
     button.isGradientButton = true
     
-    button.onTap = { [weak self] in
-      guard let promp = self?.userPromptTextView.userPromptText, let cover = self?.selectedVoiceName else { return }
+    button.onTap = {
+      guard let promp = self.userPromptTextView.userPromptText, let cover = self.viewModel.selectedVoiceName else { return }
       let userData = VoiceGenerateParameters(promp: promp, cover: cover)
-      self?.delegate?.generateButtonTapped(userData: userData)
+      self.delegate?.generateButtonTapped(userData: userData)
     }
     return button
   }()
@@ -138,8 +139,8 @@ class HomeContentView: BaseView {
   }
   
   override func bind() {
-    networkDelegate = self
-    getHomeContent()
+    viewModel.delegate = self
+    viewModel.loadVoices()
   }
   
   override func updateUI() {
@@ -151,27 +152,23 @@ class HomeContentView: BaseView {
     
     categoriesCollectionView.selectItem(at: IndexPath(row: 0, section: 0), animated: false, scrollPosition: .centeredHorizontally)
   }
-  
-  private func isContinuable() {
-    continueButton.isDisabled = selectedVoiceName == nil || userPromptTextView.userPromptText.isNilOrBlank
-  }
 }
 
 //MARK: CollectionView Functions
 
 extension HomeContentView: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    return collectionView == categoriesCollectionView ? categories?.count ?? 0 : homeContent?[selectedCategoryName ?? ""]??.count ?? 0
+    return viewModel.getCollectionItemCount(isCategoriesCollection: collectionView == categoriesCollectionView)
   }
   
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     if collectionView == categoriesCollectionView {
       let cell =  collectionView.dequeueCell(withClassAndIdentifier: CategoryCell.self, for: indexPath)
-      cell.name = categories?[indexPath.row]
+      cell.name = viewModel.categories?[indexPath.row]
       return cell
     } else {
       let cell = collectionView.dequeueCell(withClassAndIdentifier: VoiceCell.self, for: indexPath)
-      cell.voice = homeContent?[selectedCategoryName ?? ""]??[indexPath.row]
+      cell.voice = viewModel.createVoiceItemCellData(indexPath: indexPath)
       return cell
     }
   }
@@ -180,8 +177,8 @@ extension HomeContentView: UICollectionViewDataSource, UICollectionViewDelegate,
     if collectionView == categoriesCollectionView,
        let cell = collectionView.cellForItem(at: indexPath) as? CategoryCell,
        let category = cell.name {
-      selectedCategoryName = category
-      selectedVoiceName = nil
+      viewModel.selectedCategoryName = category
+      viewModel.selectedVoiceName = nil
       voicesCollectionView.reloadData()
       
       cell.isSelected = true
@@ -190,7 +187,7 @@ extension HomeContentView: UICollectionViewDataSource, UICollectionViewDelegate,
       voicesCollectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .centeredVertically, animated: true)
       
     } else if let cell = collectionView.cellForItem(at: indexPath) as? VoiceCell {
-      selectedVoiceName = cell.voice?.name
+      viewModel.selectedVoiceName = cell.voice?.name
       cell.isSelected = true
       collectionView.scrollToItem(at: indexPath, at: .centeredVertically, animated: true)
     }
@@ -198,7 +195,7 @@ extension HomeContentView: UICollectionViewDataSource, UICollectionViewDelegate,
   }
   
   func collectionView(_ collectionView: UICollectionView, layout _: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-    guard collectionView == categoriesCollectionView, let category = categories?[indexPath.row] else {
+    guard collectionView == categoriesCollectionView, let category = viewModel.categories?[indexPath.row] else {
       return CGSize(width: 100, height: 140)
     }
     
@@ -207,21 +204,20 @@ extension HomeContentView: UICollectionViewDataSource, UICollectionViewDelegate,
   }
 }
 
-//MARK: Networking
-
-extension HomeContentView: NetworkDelegate {
-  private func getHomeContent() {
-    let request = BaseRequest(
-      endpoint: .voices,
-      method: .post)
-    sendRequest(request, responseType: VoicesEntity())
+extension HomeContentView: HomeViewModelDelegate {
+  func didUpdateCategories() {
+    updateUI()
   }
   
-  func networkDataReceived(_ data: Any?) {
-    guard let response = data as? VoicesEntity else { return }
-    categories = response.getCategories()
-    selectedCategoryName = categories?.first
-    homeContent = response.getObjectsByCategory()
+  func didUpdateHomeContent() {
+    updateUI()
+  }
+  
+  func changeContinueButtonClickable(_ isClickable: Bool) {
+    continueButton.isDisabled = !isClickable
+  }
+  
+  func anErrorOccured(message: String) {
+    // Bir hata meydana geldi
   }
 }
-

@@ -64,6 +64,10 @@
 		D34B7BFD2CD79A1E009A6763 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D34B7BFB2CD79A1E009A6763 /* Main.storyboard */; };
 		D34B7BFF2CD79A1F009A6763 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D34B7BFE2CD79A1F009A6763 /* Assets.xcassets */; };
 		D34B7C022CD79A1F009A6763 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D34B7C002CD79A1F009A6763 /* LaunchScreen.storyboard */; };
+		D39E286A2CE5232400A2D67F /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39E28692CE5232400A2D67F /* HomeViewModel.swift */; };
+		D39E286E2CE5252400A2D67F /* HomeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39E286D2CE5252400A2D67F /* HomeRepository.swift */; };
+		D39E28712CE527D000A2D67F /* VoicesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39E28702CE527D000A2D67F /* VoicesService.swift */; };
+		D39E28732CE52D8B00A2D67F /* HomeUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39E28722CE52D8B00A2D67F /* HomeUseCase.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -136,6 +140,10 @@
 		D34B7BFE2CD79A1F009A6763 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D34B7C012CD79A1F009A6763 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D34B7C032CD79A1F009A6763 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D39E28692CE5232400A2D67F /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		D39E286D2CE5252400A2D67F /* HomeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRepository.swift; sourceTree = "<group>"; };
+		D39E28702CE527D000A2D67F /* VoicesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoicesService.swift; sourceTree = "<group>"; };
+		D39E28722CE52D8B00A2D67F /* HomeUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeUseCase.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -348,6 +356,10 @@
 		D3199F0C2CD79E3D007990D3 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				D39E286F2CE527B600A2D67F /* Service */,
+				D39E286B2CE523E400A2D67F /* Repository */,
+				D39E286C2CE523EC00A2D67F /* UseCase */,
+				D39E28682CE5230C00A2D67F /* ViewModel */,
 				D3199F0D2CD79E3D007990D3 /* Cells */,
 				D3199F102CD79E3D007990D3 /* HomeContentView.swift */,
 				D3199F112CD79E3D007990D3 /* HomeCoordinator.swift */,
@@ -462,6 +474,38 @@
 			path = Main;
 			sourceTree = "<group>";
 		};
+		D39E28682CE5230C00A2D67F /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				D39E28692CE5232400A2D67F /* HomeViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		D39E286B2CE523E400A2D67F /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				D39E286D2CE5252400A2D67F /* HomeRepository.swift */,
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
+		D39E286C2CE523EC00A2D67F /* UseCase */ = {
+			isa = PBXGroup;
+			children = (
+				D39E28722CE52D8B00A2D67F /* HomeUseCase.swift */,
+			);
+			path = UseCase;
+			sourceTree = "<group>";
+		};
+		D39E286F2CE527B600A2D67F /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				D39E28702CE527D000A2D67F /* VoicesService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -556,6 +600,7 @@
 				D3199EE82CD79B00007990D3 /* VoicesEntity.swift in Sources */,
 				D3199EE22CD79B00007990D3 /* UICollectionViewExt.swift in Sources */,
 				D3199F1F2CD79E3D007990D3 /* PromptInputView.swift in Sources */,
+				D39E286E2CE5252400A2D67F /* HomeRepository.swift in Sources */,
 				D34B46782CDAA2C600CCA914 /* VoicePlayerError.swift in Sources */,
 				D3199EDE2CD79B00007990D3 /* UITableViewExt.swift in Sources */,
 				D3199F252CD79E3D007990D3 /* HomeVC.swift in Sources */,
@@ -567,6 +612,7 @@
 				D3199F282CD79E3D007990D3 /* VoiceDetailVC.swift in Sources */,
 				D34B46732CDA7C3B00CCA914 /* UIApplicationExt.swift in Sources */,
 				D3199EE62CD79B00007990D3 /* InspirationsData.swift in Sources */,
+				D39E286A2CE5232400A2D67F /* HomeViewModel.swift in Sources */,
 				D3199EDF2CD79B00007990D3 /* UIColorExt.swift in Sources */,
 				D34B466D2CD9822800CCA914 /* VoicePlayerView.swift in Sources */,
 				D3199F2D2CD79E3D007990D3 /* VoiceGeneratingVC.swift in Sources */,
@@ -576,8 +622,10 @@
 				D34B467D2CDAB1B400CCA914 /* Catalog.swift in Sources */,
 				D3199EE92CD79B00007990D3 /* VoiceResultEntity.swift in Sources */,
 				D3199F222CD79E3D007990D3 /* VoiceCell.swift in Sources */,
+				D39E28712CE527D000A2D67F /* VoicesService.swift in Sources */,
 				D3199EEC2CD79B00007990D3 /* BaseCollectionViewCell.swift in Sources */,
 				D3199F2C2CD79E3D007990D3 /* VoiceGeneratingCoordinator.swift in Sources */,
+				D39E28732CE52D8B00A2D67F /* HomeUseCase.swift in Sources */,
 				D3199EEA2CD79B00007990D3 /* Endpoint.swift in Sources */,
 				D3199EE02CD79B00007990D3 /* StringExt.swift in Sources */,
 				D3199EF12CD79B00007990D3 /* BaseCoordinator.swift in Sources */,
