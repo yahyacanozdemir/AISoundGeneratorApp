@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 
 
-class BaseVC<T>: UIViewController, Layoutable {
+class BaseVC<T>: UIViewController, BindableLayout {
   
   // MARK: Lifecycle
   

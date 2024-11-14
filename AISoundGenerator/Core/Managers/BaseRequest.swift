@@ -19,20 +19,12 @@ struct BaseRequest {
     parameters: [String: Any]? = nil,
     parameterType: ParameterType? = nil,
     contentType: ContentType = .json)
-//    isShowProgressAllowed: Bool = true,
-//    isAutoErrorMessageAllowed: Bool = true,
-//    isSnackBarErrorMessage: Bool = false,
-//    isPopupErrorMessage: Bool = true,
   {
     self.endpoint = endpoint
     self.method = method
     self.parameters = parameters
     self.parameterType = parameterType
     self.contentType = contentType
-//    self.isShowProgressAllowed = isShowProgressAllowed
-//    self.isAutoErrorMessageAllowed = isAutoErrorMessageAllowed
-//    self.isSnackBarErrorMessage = isSnackBarErrorMessage
-//    self.isPopupErrorMessage = isPopupErrorMessage
   }
 
   // MARK: Internal
@@ -42,10 +34,6 @@ struct BaseRequest {
   var parameters: [String: Any]?
   var parameterType: ParameterType?
   var contentType: ContentType
-//  var isShowProgressAllowed: Bool
-//  var isAutoErrorMessageAllowed: Bool
-//  var isSnackBarErrorMessage: Bool
-//  var isPopupErrorMessage: Bool
 }
 
 enum ParameterType {

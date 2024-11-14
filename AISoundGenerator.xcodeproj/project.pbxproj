@@ -10,8 +10,6 @@
 		D3199EB52CD79ABC007990D3 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = D3199EB42CD79ABC007990D3 /* SnapKit */; };
 		D3199EBA2CD79AC8007990D3 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = D3199EB92CD79AC8007990D3 /* Kingfisher */; };
 		D3199EBD2CD79AD8007990D3 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = D3199EBC2CD79AD8007990D3 /* Alamofire */; };
-		D3199EDE2CD79B00007990D3 /* UITableViewExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3199EC22CD79B00007990D3 /* UITableViewExt.swift */; };
-		D3199EDF2CD79B00007990D3 /* UIColorExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3199EC32CD79B00007990D3 /* UIColorExt.swift */; };
 		D3199EE02CD79B00007990D3 /* StringExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3199EC42CD79B00007990D3 /* StringExt.swift */; };
 		D3199EE12CD79B00007990D3 /* UIViewExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3199EC52CD79B00007990D3 /* UIViewExt.swift */; };
 		D3199EE22CD79B00007990D3 /* UICollectionViewExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3199EC62CD79B00007990D3 /* UICollectionViewExt.swift */; };
@@ -80,8 +78,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		D3199EC22CD79B00007990D3 /* UITableViewExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableViewExt.swift; sourceTree = "<group>"; };
-		D3199EC32CD79B00007990D3 /* UIColorExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExt.swift; sourceTree = "<group>"; };
 		D3199EC42CD79B00007990D3 /* StringExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExt.swift; sourceTree = "<group>"; };
 		D3199EC52CD79B00007990D3 /* UIViewExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExt.swift; sourceTree = "<group>"; };
 		D3199EC62CD79B00007990D3 /* UICollectionViewExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UICollectionViewExt.swift; sourceTree = "<group>"; };
@@ -165,8 +161,6 @@
 		D3199EC12CD79B00007990D3 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				D3199EC22CD79B00007990D3 /* UITableViewExt.swift */,
-				D3199EC32CD79B00007990D3 /* UIColorExt.swift */,
 				D3199EC42CD79B00007990D3 /* StringExt.swift */,
 				D34B46632CD7B89C00CCA914 /* UIImageViewExt.swift */,
 				D3199EC52CD79B00007990D3 /* UIViewExt.swift */,
@@ -557,7 +551,6 @@
 				D3199EE22CD79B00007990D3 /* UICollectionViewExt.swift in Sources */,
 				D3199F1F2CD79E3D007990D3 /* PromptInputView.swift in Sources */,
 				D34B46782CDAA2C600CCA914 /* VoicePlayerError.swift in Sources */,
-				D3199EDE2CD79B00007990D3 /* UITableViewExt.swift in Sources */,
 				D3199F252CD79E3D007990D3 /* HomeVC.swift in Sources */,
 				D34B7BF62CD79A1E009A6763 /* AppDelegate.swift in Sources */,
 				D3199F202CD79E3D007990D3 /* BaseButton.swift in Sources */,
@@ -567,7 +560,6 @@
 				D3199F282CD79E3D007990D3 /* VoiceDetailVC.swift in Sources */,
 				D34B46732CDA7C3B00CCA914 /* UIApplicationExt.swift in Sources */,
 				D3199EE62CD79B00007990D3 /* InspirationsData.swift in Sources */,
-				D3199EDF2CD79B00007990D3 /* UIColorExt.swift in Sources */,
 				D34B466D2CD9822800CCA914 /* VoicePlayerView.swift in Sources */,
 				D3199F2D2CD79E3D007990D3 /* VoiceGeneratingVC.swift in Sources */,
 				D3199F2E2CD79E3D007990D3 /* VoiceGeneratingContentView.swift in Sources */,

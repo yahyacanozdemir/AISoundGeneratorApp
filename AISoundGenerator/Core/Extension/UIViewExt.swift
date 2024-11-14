@@ -7,29 +7,7 @@
 
 import UIKit
 
-extension UIView {
-  func applyPapcornsLinear() -> CAGradientLayer {
-    return self.applyGradient(colours: [.papcornsPink, .papcornsPurple], locations: [])
-  }
-  
-  func applyPapcornsPrimaryLinear() -> CAGradientLayer {
-    return self.applyGradient(colours: [.papcornsPink30, .papcornsPurple30], locations: nil)
-  }
-  
-  func applyGradient(colours: [UIColor]) -> CAGradientLayer {
-    return self.applyGradient(colours: colours, locations: nil)
-  }
-  
-  
-  func applyGradient(colours: [UIColor], locations: [NSNumber]?) -> CAGradientLayer {
-    let gradient: CAGradientLayer = CAGradientLayer()
-    gradient.frame = self.bounds
-    gradient.colors = colours.map { $0.cgColor }
-    gradient.locations = locations
-    self.layer.insertSublayer(gradient, at: 0)
-    return gradient
-  }
-  
+extension UIView {  
   func addRadius(
     _ radius: CGFloat,
     corners: CACornerMask = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner, .layerMaxXMinYCorner, .layerMinXMinYCorner])
