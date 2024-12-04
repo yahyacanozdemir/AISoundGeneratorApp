@@ -2,7 +2,7 @@
 
 ![Voice Generator App](https://github.com/user-attachments/assets/97868171-2700-4d35-b7a8-d91b73b978f7)
 
-Bu proje Papcorns şirketinin gönderdiği aday challange'ı kapsamıdna tarafımca 3 günlük süreçte, XCODE üzerinde ve Swift UIKit ile geliştirilmiş bir mobil uygulamadır. Uygulama, kullanıcıların farklı ses türlerinden ses dosyaları oluşturmasına, bunları çalmasına, indirmesine ve paylaşmasına olanak tanır.
+Proje 2 günlük süreçte challange kapsamında geliştirilmiş bir mobil uygulamadır. Uygulama, kullanıcıların farklı ses türlerinden ses dosyaları oluşturmasına, bunları çalmasına, indirmesine ve paylaşmasına olanak tanır.
 
 ## İçindekiler
 - [Özellikler](#özellikler)
@@ -72,14 +72,14 @@ API işlemlerini ve ses dosyasını indirme işlemini yöneten singleton bir sı
 
 ## Kurulum
 
-1. Bu repo’yu klonlayın:
+1. Bu repo’yu klonlayın ve XCode üzerinde çalıştırın:
    ```bash
    git clone https://github.com/kullanici-adi/Voice-Generator-iOS.git
    cd Voice-Generator-iOS
 
 ## Geliştirici
 
-Bu proje, kullanıcı deneyimini ön planda tutarak geliştirilmiş, modüler ve kolayca genişletilebilir bir Swift uygulamasıdır. Projeye katkıda bulunmak veya sorularınızı iletmek için aşağıdaki bilgilere başvurabilirsiniz:
+Bu proje, kullanıcı deneyimini ön planda tutarak geliştirilmiş, modüler ve kolayca genişletilebilir bir Swift uygulamasıdır.
 
 - **Geliştirici Adı:** Yahya Can Özdemir
 - **E-posta:** yahyacanozdemir@gmail.com
